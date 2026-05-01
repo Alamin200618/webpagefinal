@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TV Energy Consumption Story - Energy Data Webpage</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="logo">EnergyHub</div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#energy-topics">Energy</a></li>
+        <li><a href="data-detail.html">Data</a></li>
+        <li><a href="solutions.html">Solutions</a></li>
+        <li><a href="tv-story.html" class="active">TV Story</a></li>
+        <li><a href="policy.html">Policy</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <h1>📺 TV Energy Consumption in Australia</h1>
+    <p class="subtitle">Screen technology, power usage & consumer buying insights.</p>
+  </header>
+
+  <main>
+    <section class="detail-container">
+
+      <article class="content-card">
+        <h3>Step 1: Who is the audience?</h3>
+        <p>
+          This story is designed for general consumers in Australia who want to buy a TV. They are not technical users,
+          so the goal is to provide clear and practical advice using simple charts and plain language.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3>Step 2: What do they want to know?</h3>
+        <p>
+          Buyers mainly want to know which TV options use less electricity and which factors increase running costs.
+          The most useful questions are:
+        </p>
+        <ul>
+          <li>Which screen technology types are common in the market?</li>
+          <li>Which technology tends to use less power on average?</li>
+          <li>Does choosing a larger screen significantly increase energy use?</li>
+        </ul>
+      </article>
+
+      <article class="content-card">
+        <h3>Step 3: How are we presenting this information?</h3>
+        <p>
+          We use simple bar charts and a scatter plot so consumers can quickly compare technology types and understand
+          the size-versus-power relationship. Supporting text under each chart explains what the visual means for real buying decisions.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3>Screen Technology Distribution</h3>
+        <div class="chart-wrap">
+          <canvas id="technologyChart" aria-label="Bar chart for screen technology distribution"></canvas>
+        </div>
+        <p class="explanation">
+          <strong>What this chart shows:</strong> How many TVs in the sample use LED, OLED, and LCD.<br />
+          <strong>Why it matters:</strong> It shows which technologies are common and available for buyers.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3>Average Power Consumption by Technology</h3>
+        <div class="chart-wrap">
+          <canvas id="avgPowerChart" aria-label="Bar chart for average power consumption"></canvas>
+        </div>
+        <p class="explanation">
+          <strong>What this chart shows:</strong> Average power use in watts for each screen technology.<br />
+          <strong>Why it matters:</strong> Lower average power can reduce electricity bills over time.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3>Screen Size vs Power Consumption</h3>
+        <div class="chart-wrap">
+          <canvas id="sizePowerChart" aria-label="Scatter plot for screen size and power"></canvas>
+        </div>
+        <p class="explanation">
+          <strong>What this chart shows:</strong> The relationship between TV size and power use.<br />
+          <strong>Why it matters:</strong> Larger TVs often use more energy, which affects long-term costs.
+        </p>
+      </article>
+
+      <article class="content-card">
+        <h3>Step 4: Storyboard examples and visual references</h3>
+        <p>
+          The assignment allows using chart outputs from tools like KNIME and Excel. Below are supporting example visuals
+          from the project charts folder.
+        </p>
+        <div class="reference-grid">
+          <figure>
+            <img src="charts/Pie Chart.png" alt="Pie chart reference from charts folder" />
+            <figcaption>Reference: Pie Chart</figcaption>
+          </figure>
+          <figure>
+            <img src="charts/Line Plot.png" alt="Line plot reference from charts folder" />
+            <figcaption>Reference: Line Plot</figcaption>
+          </figure>
+          <figure>
+            <img src="charts/Scatter Plot.png" alt="Scatter plot reference from charts folder" />
+            <figcaption>Reference: Scatter Plot</figcaption>
+          </figure>
+        </div>
+      </article>
+
+      <article class="content-card">
+        <h3>Conclusion</h3>
+        <p>
+          In this sample, OLED models generally use less power than similar alternatives, and bigger screens tend to consume more energy.
+          Consumers can make smarter buying decisions by balancing size, technology, and running cost.
+        </p>
+      </article>
+
+      <a href="index.html" class="btn">← Back to Home</a>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; All rights reserved by Md Alamin Hossen - 106388647@student.swin.edu.au</p>
+  </footer>
+
+  <script src="scripts.js"></script>
+</body>
+</html>

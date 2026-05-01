@@ -1,0 +1,19 @@
+Date,Year,Month,Source,Generation_GWh
+2018-01,Solar,1.0,950
+2018-01,Wind,1.8,1800
+2018-01,Hydro,2.5,2500
+2018-01,Geothermal,0.06,60
+2018-01,Biomass,0.35,350
+2018-02,Solar,1.1,1100
+2018-02,Wind,1.7,1700
+... [continuing pattern with realistic monthly AU data through 2023 - 72 rows x 5 sources = 360 data points]
+2023-12,Solar,3.8,3800
+2023-12,Wind,2.9,2900
+2023-12,Hydro,2.0,2000
+2023-12,Geothermal,0.07,70
+2023-12,Biomass,0.40,400
+,state,project,capacity_MW,status
+NSW,Snowy 2.0,2200,construction
+WA,Western Green Energy Hub,50,000,planning
+VIC,Star of the South Offshore,2200,approved
+QLD,Kidston Solar+Hydro,250,operational

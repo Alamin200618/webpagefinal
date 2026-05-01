@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australian Energy Data Analysis</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">EnergyHub</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#energy-topics">Energy</a></li>
+                <li><a href="data-detail.html" class="active">Data</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="tv-story.html">TV Story</a></li>
+                <li><a href="policy.html">Policy</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="detail-container">
+        <header>
+            <h1>Australian Electricity Generation Analysis (TWh)</h1>
+            <p>AEMO NEM data 2020-2022 - Renewables from 32% → 35%</p>
+        </header>
+        <div class="detail-grid">
+            <div>
+                <div class="detail-section">
+                    <h2>📊 Complete NEM Dataset</h2>
+                    <table id="full-table">
+                        <thead>
+                            <tr><th>Year</th><th>Source</th><th>Generation (TWh)</th><th>% Mix</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2020</td><td>Solar</td><td>14.5</td><td>4.6%</td></tr>
+                            <tr><td>2020</td><td>Wind</td><td>21.8</td><td>6.9%</td></tr>
+                            <tr><td>2020</td><td>Hydro</td><td>32.5</td><td>10.3%</td></tr>
+                            <tr><td>2020</td><td>Geothermal</td><td>0.7</td><td>0.2%</td></tr>
+                            <tr><td>2020</td><td>Biomass</td><td>4.2</td><td>1.3%</td></tr>
+                            <tr><td>2020</td><td>Nuclear</td><td>0</td><td>0%</td></tr>
+                            <tr><td>2021</td><td>Solar</td><td>25.6</td><td>8.1%</td></tr>
+                            <tr><td>2021</td><td>Wind</td><td>25.9</td><td>8.2%</td></tr>
+                            <tr><td>2021</td><td>Hydro</td><td>27.8</td><td>8.8%</td></tr>
+                            <tr><td>2021</td><td>Geothermal</td><td>0.7</td><td>0.2%</td></tr>
+                            <tr><td>2021</td><td>Biomass</td><td>4.3</td><td>1.4%</td></tr>
+                            <tr><td>2021</td><td>Nuclear</td><td>0</td><td>0%</td></tr>
+                            <tr><td>2022</td><td>Solar</td><td>43.2</td><td>13.2%</td></tr>
+                            <tr><td>2022</td><td>Wind</td><td>32.8</td><td>10.0%</td></tr>
+                            <tr><td>2022</td><td>Hydro</td><td>23.1</td><td>7.1%</td></tr>
+                            <tr><td>2022</td><td>Geothermal</td><td>0.7</td><td>0.2%</td></tr>
+                            <tr><td>2022</td><td>Biomass</td><td>4.5</td><td>1.4%</td></tr>
+                            <tr><td>2022</td><td>Nuclear</td><td>0</td><td>0%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="stats-card">
+                <h3>AU Key Insights</h3>
+                <p><strong>Solar Growth:</strong> +198% (2yr)</p>
+                <p><strong>Wind Stable:</strong> +50% (2yr)</p>
+                <p><strong>Hydro Decline:</strong> Drought impact</p>
+                <p><strong>Renewables:</strong> 32→35%</p>
+            </div>
+        </div>
+        <div class="detail-section">
+            <canvas id="stacked-chart" width="1000" height="500"></canvas>
+            <p>Stacked area chart: AU renewable evolution 2020-2022</p>
+        </div>
+        <script>
+            // Stacked area chart implementation
+            const canvas = document.getElementById('stacked-chart');
+            const ctx = canvas.getContext('2d');
+            canvas.width = canvas.offsetWidth;
+            
+            const data2020 = {Solar:14.5, Wind:21.8, Hydro:32.5, Geothermal:0.7, Biomass:4.2};
+            const data2021 = {Solar:25.6, Wind:25.9, Hydro:27.8, Geothermal:0.7, Biomass:4.3};
+            const data2022 = {Solar:43.2, Wind:32.8, Hydro:23.1, Geothermal:0.7, Biomass:4.5};
+            
+            const years = ['2020', '2021', '2022'];
+            const sources = ['Solar', 'Wind', 'Hydro', 'Geothermal', 'Biomass'];
+            const colors = ['#FFD700', '#87CEEB', '#4169E1', '#FF4500', '#228B22'];
+            
+            const width = canvas.width;
+            const height = canvas.height;
+            const padding = 60;
+            
+            // Scale
+            const maxY = 100;
+            const yScale = (height - padding*2) / maxY;
+            const barWidth = (width - padding*2) / 3;
+            
+            sources.forEach((source, s) => {
+                ctx.fillStyle = colors[s];
+                ctx.strokeStyle = colors[s];
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                
+                years.forEach((year, y) => {
+                    const data = {2020:data2020, 2021:data2021, 2022:data2022}[year][source];
+                    const x = padding + y * barWidth;
+                    const bottomY = height - padding;
+                    const barHeight = data * yScale;
+                    ctx.lineTo(x + barWidth/2, bottomY - barHeight);
+                    if (y === 0) ctx.moveTo(x + barWidth/2, bottomY);
+                });
+                ctx.lineTo(width - padding, height - padding);
+                ctx.lineTo(padding, height - padding);
+                ctx.closePath();
+                ctx.fill();
+                ctx.stroke();
+            });
+            
+            // Axes
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(padding, padding);
+            ctx.lineTo(padding, height - padding);
+            ctx.lineTo(width - padding, height - padding);
+            ctx.stroke();
+            
+            // Labels
+            ctx.fillStyle = '#333';
+            ctx.font = 'bold 14px Arial';
+            ctx.textAlign = 'center';
+            years.forEach((year, i) => {
+                ctx.fillText(year, padding + (i+0.5)*barWidth, height - 20);
+            });
+            ctx.textAlign = 'right';
+            ctx.fillText('TWh', padding - 10, padding + 20);
+        </script>
+        <div class="detail-section">
+            <h2>📈 Australian Trends</h2>
+            <p>Australia leads world rooftop solar growth. NEM renewables share 32%→35%. Solar tripled in 2 years despite hydro drought. Transmission buildout (REW) key enabler.</p>
+        </div>
+    </div>
+    <footer>
+        <p>&copy; All rights reserved by Md Alamin Hossen - 106388647@student.swin.edu.au</p>
+    </footer>
+</body>
+</html>

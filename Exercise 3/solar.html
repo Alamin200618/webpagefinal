@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Australia Solar Revolution - AU Energy Portal</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">EnergyHub</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#energy-topics">Energy</a></li>
+                <li><a href="data-detail.html">Data</a></li>
+                <li><a href="solutions.html">Solutions</a></li>
+                <li><a href="tv-story.html">TV Story</a></li>
+                <li><a href="policy.html">Policy</a></li>
+                <li><a href="#" class="active">Solar</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="detail-container">
+        <header>
+            <img src="solar.svg" alt="Australia Solar Farms" class="detail-hero">
+            <h1>🌞 Australia's Solar Revolution</h1>
+            <p>World #1 per capita rooftop solar (4.2M homes, 22GW). NEM utility solar 1GW→44GW (2023). $45B industry, 35,000 jobs, 13% NEM generation.</p>
+        </header>
+        
+        <div class="detail-grid">
+            <div>
+                <div class="detail-section">
+                    <h2>📈 Monthly Generation Timeline (GWh)</h2>
+                    <canvas id="solar-timeline" width="1000" height="400" style="max-width:100%"></canvas>
+                    <p><em>Solar tripled 2018-2023. Summer peaks 6GW/h. Rooftop ~50% total PV generation.</em></p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="detail-grid">
+            <div>
+                <div class="detail-section">
+                    <h2>🏭 Major Utility Solar Farms</h2>
+                    <table class="projects-table">
+                        <thead>
+                            <tr><th>Project</th><th>DC MW</th><th>State</th><th>COD</th><th>Owner</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Western Spirit Stage 1</td><td>1320</td><td>NSW</td><td>2024</td><td>CleanCo</td></tr>
+                            <tr><td>Murphy Creek</td><td>760</td><td>QLD</td><td>2024</td><td>Neoen</td></tr>
+                            <tr><td>Newcastle Waters</td><td>1000</td><td>NT</td><td>2025</td><td>AGL</td></tr>
+                            <tr><td>Parkes</td><td>400</td><td>NSW</td><td>2024</td><td>Edify</td></tr>
+                            <tr><td>Bango</td><td>520</td><td>ACT</td><td>2023</td><td>Maoneng</td></tr>
+                            <tr><td>Molong</td><td>250</td><td>NSW</td><td>2023</td><td>C&amp;E</td></tr>
+                            <tr><td>Kidston</td><td>270</td><td>QLD</td><td>2021</td><td>Genex</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="stats-card">
+                <h3>2023 Solar Market</h3>
+                <p><strong>Utility Capacity:</strong> 8 GW operational</p>
+                <p><strong>Pipeline:</strong> 36 GW development</p>
+                <p><strong>Rooftop:</strong> 22 GW (1.3M homes)</p>
+                <p><strong>Generation:</strong> 43 TWh (13.5% NEM)</p>
+                <p><strong>LCOE:</strong> AU$25-35/MWh</p>
+            </div>
+        </div>
+
+        <div class="detail-section">
+            <h2>🔬 Technology Landscape</h2>
+            <p><strong>Cell Tech:</strong> Mono PERC (95%, 22% eff) → TOPCon (25% emerging) → HJT (26% pilot)</p>
+            <p><strong>Modules:</strong> Bifacial standard. 550-600W trackers. Half-cut cells reduce shading.</p>
+            <p><strong>Systems:</strong> Single-axis trackers 85% utility (+25% yield). DC optimizers rare.</p>
+            <p><strong>BESS Co-loc:</strong> Hornsdale 150MW/193MWh, Collie 500MW/2GWh, 40% new projects.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>📉 Cost Reduction Trajectory</h2>
+            <p>Module: $1.20→$0.22/W | EPC: $1.90→$0.82/W | LCOE: $85→$28/MWh (2015-23). AU lowest global utility PV.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>🏠 Rooftop Phenomenon</h2>
+            <p>4.2M systems. ACT 55% penetration. QLD 38%. $45/kW installed. VPPs (AGL 1.5GW, Origin) grid services. Feed-in tariff collapse → self-consumption 85%.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>🌐 Global Exports & Industry</h2>
+            <p>Sun Cable (NT-Singapore 20GW HVDC). Western Green Hub (Pilbara 50GW). $22B Future Made in Australia Act. ARENA $1.5B solar R&D.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>⚠️ Grid Integration Challenges</h2>
+            <p>Duck curve 4-7pm ramp-down 35GW→12GW. 4GW curtailment. NEM frequency response issues. Grid-forming inverters mandated 2025.</p>
+        </div>
+
+        <div class="detail-section">
+            <h2>🚀 Pipeline & Future</h2>
+            <p>REZ declarations unlock 27GW transmission. Capacity Investment Scheme $32GW target. 50GW rooftop + 40GW utility by 2030 projected.</p>
+        </div>
+
+        <script>
+            const canvas = document.getElementById('solar-timeline');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                canvas.width = 1000; canvas.height = 400;
+                const data = [];
+                for(let i=0; i<72; i++) {
+                    data.push(1.2 + Math.sin(i/6)*0.4 + i*0.025);
+                }
+                ctx.strokeStyle = '#FFD700';
+                ctx.lineWidth = 4;
+                ctx.beginPath();
+                data.forEach((val,i) => {
+                    const x = 80 + i * (920/71);
+                    const y = 320 - val * 60;
+                    if(i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+                });
+                ctx.stroke();
+            }
+        </script>
+    </div>
+</body>
+</html>
